@@ -31,6 +31,7 @@ public class InitMybatis {
             McTxnInMapper mcTxnInMapper = sqlSession.getMapper(McTxnInMapper.class);
 //            insert(mcTxnInMapper);
             select(mcTxnInMapper,"ORD_20210413000749");
+            //
         }finally {
             sqlSession.commit();//数据commit
             if(sqlSession != null) sqlSession.close();
