@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.McTxnInMapper">
+
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="McTxnIn">
+        <id column="ID" property="id" jdbcType="VARCHAR" javaType="String" />
+        <result column="MERID" property="merid" />
+        <result column="TXNREF" property="txnref" />
+        <result column="MERNM" property="mernm" />
+        <result column="PAYTYPE" property="paytype" />
+        <result column="PMTOPTION" property="pmtoption" />
+        <result column="PMTCHAN" property="pmtchan" />
+        <result column="COUNTRY" property="country" />
+        <result column="ORGID" property="orgid" />
+        <result column="ORGTXNREF" property="orgtxnref" />
+        <result column="TXNCRY" property="txncry" />
+        <result column="TXNAMT" property="txnamt" />
+        <result column="AGTFEE" property="agtfee" />
+        <result column="HSBCFEE" property="hsbcfee" />
+        <result column="SUCCESSURL" property="successurl" />
+        <result column="FAILURL" property="failurl" />
+        <result column="NOTIFYURL" property="notifyurl" />
+        <result column="CUSTFRSTNM" property="custfrstnm" />
+        <result column="CUSTLASTNM" property="custlastnm" />
+        <result column="CUSTEMAIL" property="custemail" />
+        <result column="CUSTPHONE" property="custphone" />
+        <result column="DESCRIPTION" property="description" />
+        <result column="TXNDATE" property="txndate" />
+        <result column="TXNTIME" property="txntime" />
+        <result column="RCVTIME" property="rcvtime" />
+        <result column="REQTIME" property="reqtime" />
+        <result column="LASTUPDATETIME" property="lastupdatetime" />
+        <result column="CREATETIME" property="createtime" typeHandler="com.mybatisconfig.StringToDateTypeHandler"/>
+        <result column="PAYMENTDATETIME" property="paymentdatetime" />
+        <result column="TXNSTATUS" property="txnstatus" typeHandler="com.mybatisconfig.OrderStatusTypeHandler"/>
+        <result column="CHKSTATUS" property="chkstatus" />
+        <result column="CHKHUBSTATUS" property="chkhubstatus" />
+        <result column="CHKHUBDATE" property="chkhubdate" />
+        <result column="BATCHNO" property="batchno" />
+        <result column="ERRCODE" property="errcode" />
+        <result column="ERRMSG" property="errmsg" />
+        <result column="AGTTXNREF" property="agttxnref" />
+        <result column="BANKREFNUM" property="bankrefnum" />
+        <result column="BRAND" property="brand" />
+        <result column="MCN" property="mcn" />
+        <result column="CLIENTID" property="clientid" />
+        <result column="MERCHANTKID" property="merchantkid" />
+        <result column="HSBCKID" property="hsbckid" />
+        <result column="BILLINGNO" property="billingno" />
+        <result column="QUERYFLAG" property="queryflag" />
+        <result column="RSV1" property="rsv1" />
+        <result column="RSV2" property="rsv2" />
+        <result column="RSV3" property="rsv3" />
+        <result column="RSV4" property="rsv4" />
+        <result column="RSV5" property="rsv5" />
+        <result column="RSV6" property="rsv6" />
+        <result column="RSV7" property="rsv7" />
+        <result column="RSV8" property="rsv8" />
+        <result column="RSV9" property="rsv9" />
+        <result column="RSV10" property="rsv10" />
+        <result column="CHLFLAG" property="chlflag" />
+        <result column="AGTSTATUS" property="agtstatus" />
+        <result column="AGTUNIQUEID" property="agtuniqueid" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="ADDCHARGE" property="addcharge" />
+        <result column="SERVICEFEE" property="servicefee" />
+        <result column="SERVICETAX" property="servicetax" />
+        <result column="BUYERTXNCRY" property="buyertxncry" />
+        <result column="BUYERTXNAMT" property="buyertxnamt" />
+        <result column="NETAMT" property="netamt" />
+        <result column="CASHBACK" property="cashback" />
+        <result column="GSTFEE" property="gstfee" />
+        <result column="CHKAGTDATE" property="chkagtdate" />
+        <result column="FEEFLAG" property="feeflag" />
+        <result column="EXPIRY" property="expiry" />
+        <result column="AGTINVOICEID" property="agtinvoiceid" />
+        <result column="ORDERAMT" property="orderamt" />
+    </resultMap>
+
+    <insert id="insertTxn"  > <!-- useGeneratedKeys="true" keyProperty="id" 数据自增列可以如此设置 -->
+        insert into mc_txn_in (id,merid,txnref,txnstatus,country,createtime)
+        values
+        (#{id,jdbcType=VARCHAR},#{merid},#{txnref},#{txnstatus,typeHandler=com.mybatisconfig.OrderStatusTypeHandler},
+        #{country},#{createtime,typeHandler=com.mybatisconfig.StringToDateTypeHandler})
+    </insert>
+
+    <select id="selectByTxnref" resultMap="BaseResultMap">
+        SELECT  * from mc_txn_in where txnref = #{txnref}
+    </select>
+</mapper>
